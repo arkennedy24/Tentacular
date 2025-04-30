@@ -7,7 +7,7 @@ using TMPro; // Add this to use TextMeshPro
 public class BreakerBoxFix : MonoBehaviour
 {
     public ParticleSystem sparks; // Reference to sparking effect
-    public Animator animator; // Reference to animation
+   public Animator animator; // Reference to animation
     public TextMeshProUGUI interactionText; // Reference to TextMeshPro UI element
 
     private bool isFixed = false;
@@ -40,7 +40,7 @@ public class BreakerBoxFix : MonoBehaviour
         isFixed = true;
 
         // Play fixing animation
-        animator.SetTrigger("Fix");
+       // animator.SetTrigger("Fix");
 
         // Stop sparking effect
         sparks.Stop();
