@@ -57,7 +57,7 @@ using System.Collections;
             damaged = false;
 
             // Set the displayed text to be the word "Score" followed by the score value.
-            scoreText.text = "SCOREs: " + scoreSystem.score;
+            scoreText.text = "Tasks: " + scoreSystem.score + "/" + scoreSystem.endScore;
 		}
         
         void Death()

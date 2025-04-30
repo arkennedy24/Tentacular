@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score: 0
   resetScore: 0
-  endScore: 6
+  endScore: 4
   trash: []

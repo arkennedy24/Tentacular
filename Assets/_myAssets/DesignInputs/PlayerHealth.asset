@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3db490cc2bb7804e89774f7a340e0ba, type: 3}
   m_Name: PlayerHealth
   m_EditorClassIdentifier: 
-  floatVariable: 10
+  floatVariable: 7.1
   resetFloatVariable: 30

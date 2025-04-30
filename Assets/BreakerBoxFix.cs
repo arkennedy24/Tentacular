@@ -2,27 +2,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro; // Add this to use TextMeshPro
+using TMPro; 
 
 public class BreakerBoxFix : MonoBehaviour
 {
-    public ParticleSystem sparks; // Reference to sparking effect
-   public Animator animator; // Reference to animation
-    public TextMeshProUGUI interactionText; // Reference to TextMeshPro UI element
-
+    public ParticleSystem sparks; 
+    public Animator animator; 
+    public TextMeshProUGUI interactionText; 
+    public Camera playerCamera; 
     private bool isFixed = false;
-    public float fixTime = 3f; // Time required to fix the breaker box
-    private float currentFixTime = 0f; // Tracks fixing progress
-
+    public float fixTime = 3f; 
+    private float currentFixTime = 0f; 
+	public CollectedItems score;
     void Update()
     {
-        // Check if player is holding 'E' key
-        if (Input.GetKey(KeyCode.E) && !isFixed)
+        
+        if (Input.GetKey(KeyCode.E) && !isFixed && IsLookingAtBreakerBox())
         {
-            currentFixTime += Time.deltaTime; // Progressively increase the fix time
-            Debug.Log("Fix Progress: " + (currentFixTime / fixTime) * 100 + "%");
+            currentFixTime += Time.deltaTime; 
+            Debug.Log("Breaker Box Fix Progress: " + (currentFixTime / fixTime) * 100 + "%");
 
-            // When fix time is reached, finalize repair
+           
             if (currentFixTime >= fixTime)
             {
                 FixBreakerBox();
@@ -30,25 +30,41 @@ public class BreakerBoxFix : MonoBehaviour
         }
         else
         {
-            // Reset progress if player stops holding 'E'
+            
             currentFixTime = 0f;
         }
+    }
+
+    bool IsLookingAtBreakerBox()
+    {
+        Ray ray = playerCamera.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit))
+        {
+            if (hit.collider.gameObject == gameObject)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     void FixBreakerBox()
     {
         isFixed = true;
+		score.score += 1;
 
         // Play fixing animation
-       // animator.SetTrigger("Fix");
+        // animator.SetTrigger("Fix");
 
-        // Stop sparking effect
+       
         sparks.Stop();
-        Debug.Log("Sparks should be stopped now.");
+        Debug.Log("Breaker Box Sparks should be stopped now.");
 
         Debug.Log("Breaker Box Fully Fixed!");
 
-        // Hide interaction text
+       
         interactionText.text = "";
     }
 
